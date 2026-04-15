@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} E-commerce Website {% endblock %}</title>
+    <!-- Bootstrap 5 -->
+    <link href="{% static 'core/css/bootstrap.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/custom.css' %}">
+</head>
+<body>
+{% include 'core/header.html' %}
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Sidebar Filters -->
+        {% include 'core/sidebar.html' %}
+        <!-- Product Section -->
+        <div class="col-lg-9">
+        {% block body %}
+        {% endblock %}
+        </div>
+    </div>
+</div>
+{% include 'core/footer.html' %}
+<script src="{% static 'core/js/jquery.js' %}"></script>
+<script src="{% static 'core/js/custom.js' %}"></script>
+</body>
+</html>
