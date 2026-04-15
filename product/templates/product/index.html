@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %} 
+{% load static %}
+{% load custom_filters %} 
+{% block title %}
+Product Listing {% endblock %} 
+{% block body %}
+    <!-- Top Filter Bar -->
+    <div class="d-flex justify-content-between align-items-center mb-4 px-2">
+        <h5 class="fw-bold mb-0">Men T-Shirts</h5>
+        <select class="form-select w-auto myntra-sort">
+            <option>Recommended</option>
+            <option>What's New</option>
+            <option>Better Discount</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+        </select>
+    </div>
+    <!-- Product Grid -->
+    <div class="row g-4">
+        <!-- PRODUCT CARD -->
+        {% if products %}
+        {% for product in products %}
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="myntra-card">
+                <!-- Image -->
+                <div class="myntra-img">
+                    {% if product.image and product.image.url %}
+                        <img data-src="{{ product.image.url }}" 
+                            src="{% static 'core/images/no-image.png' %}"
+                            class="img-fluid product-img lazy">
+                    {% else %}
+                        <img src="{% static 'core/images/no-image.png' %}" class="img-fluid product-img">
+                    {% endif %}
+                    <!-- Wishlist -->
+                    <div class="wishlist">♡</div>
+                    <!-- Hover Button -->
+                    <div class="quick-view">
+                        <a href="{{ product.get_absolute_url }}" class="quick-btn">
+                            VIEW PRODUCT
+                        </a>
+                    </div>
+                </div>
+                <!-- Details -->
+                <div class="myntra-info">
+                    <h6 class="brand">Roadster</h6>
+                    <p class="title">{{ product.name }}</p>
+                    <div class="price-section">
+                        <span class="price">{{ product.price|currency}}</span>
+                        <span class="old-price">₹999</span>
+                        <span class="discount">(50% OFF)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,496 @@
+/* Background */
+body {
+    background: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+/* Card */
+.myntra-card {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.myntra-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Image */
+.myntra-img {
+    position: relative;
+    background: #f5f5f6;
+    overflow: hidden;
+}
+
+.myntra-img img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+}
+
+/* Hover View Button */
+.quick-view {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    text-align: center;
+    padding: 10px;
+    transform: translateY(100%);
+    transition: 0.3s;
+}
+
+.myntra-img:hover .quick-view {
+    transform: translateY(0);
+}
+
+.quick-view .quick-btn {
+    border: none;
+    background: none;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* Info */
+.myntra-info {
+    padding: 10px 2px;
+}
+
+/* Brand */
+.brand {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Title */
+.title {
+    font-size: 13px;
+    color: #535766;
+    margin-bottom: 6px;
+}
+
+/* Price */
+.price-section {
+    font-size: 14px;
+}
+
+.price {
+    font-weight: 600;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #94969f;
+    margin-left: 5px;
+}
+
+.discount {
+    color: #ff905a;
+    margin-left: 5px;
+    font-weight: 500;
+}
+
+/* Sort dropdown */
+.myntra-sort {
+    border: 1px solid #d4d5d9;
+    font-size: 14px;
+}
+
+/* Includes css */
+
+/* HEADER */
+.shop-header {
+    background: #131921;
+    padding: 10px 30px;
+    color: white;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* LOGO */
+.logo a {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+/* NAV */
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+/* SEARCH */
+.search-box {
+    flex: 1;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+
+/* ICONS */
+.header-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.header-icons a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* SIDEBAR */
+.sidebar {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    background: #fff;
+    border-radius: 6px;
+}
+
+.filter-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+/* SECTION */
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section h6 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #212121;
+}
+
+/* LABELS */
+.filter-section label {
+    display: block;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 6px;
+    cursor: pointer;
+}
+
+.filter-section input[type="checkbox"] {
+    margin-right: 6px;
+}
+
+/* PRICE INPUT */
+.price-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.price-inputs input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* HOVER */
+.filter-section label:hover {
+    color: #000;
+}
+/* FOOTER */
+.myntra-footer {
+    background: #fafbfc;
+    padding: 40px 0;
+    margin-top: 50px;
+}
+
+.myntra-footer h6 {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.myntra-footer p {
+    font-size: 13px;
+    color: #696b79;
+    margin: 5px 0;
+}
+
+.product-img {
+    transition: opacity 0.4s ease;
+}
+
+.product-img.loaded {
+    opacity: 1;
+}
+/* product detail css */
+.pdp-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 30px 60px;
+}
+
+/* LEFT SIDE STICKY */
+.pdp-left {
+    position: sticky;
+    top: 20px;
+}
+
+.image-wrapper {
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.image-wrapper img:hover {
+    transform: scale(1.05);
+}
+
+/* THUMBNAILS */
+.thumbs {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.thumbs img {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    transition: 0.2s;
+}
+
+.thumbs img:hover {
+    border-color: #ff3f6c;
+    transform: scale(1.08);
+}
+
+.image-wrapper img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.pdp-right {
+    padding: 10px 20px;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #282c3f;
+    margin-bottom: 5px;
+}
+
+.brand {
+    font-size: 13px;
+    color: #878b94;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.price-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #282c3f;
+}
+
+.mrp {
+    text-decoration: line-through;
+    color: #878b94;
+}
+
+.discount {
+    color: #ff3f6c;
+    font-weight: 600;
+}
+
+.tax-info {
+    font-size: 12px;
+    color: #03a685;
+    margin-bottom: 20px;
+}
+
+.label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.sizes {
+    display: flex;
+    gap: 10px;
+}
+
+.sizes button {
+    border: 1px solid #d4d5d9;
+    background: #fff;
+    padding: 10px 14px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.sizes button:hover {
+    border-color: #ff3f6c;
+    color: #ff3f6c;
+}
+
+/* CTA */
+.cta {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.add-bag {
+    background: #ff3f6c;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* OFFERS */
+.offers {
+    margin-top: 25px;
+    padding: 15px;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+}
+
+.offers h4 {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.offers ul {
+    padding-left: 18px;
+    color: #535766;
+    font-size: 13px;
+}
+
+.offers li {
+    margin-bottom: 6px;
+}
+
+.details {
+    margin-top: 30px;
+}
+
+.section-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #282c3f;
+    margin-bottom: 10px;
+    border-left: 3px solid #ff3f6c;
+    padding-left: 10px;
+}
+
+.detail-card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 15px;
+    background: #fff;
+}
+
+.detail-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.detail-list li {
+    font-size: 13px;
+    color: #535766;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    line-height: 1.5;
+}
+
+.detail-list li:last-child {
+    border-bottom: none;
+}
+
+.no-data {
+    font-size: 13px;
+    color: #999;
+}
+
+.rating-box {
+    margin: 10px 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.stars {
+    background: #03a685;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.rating-value {
+    margin-left: 5px;
+    font-weight: 700;
+}
+
+.review-count {
+    font-size: 12px;
+    color: #535766;
+}
+
+.wishlists { 
+    border: 1px solid #d4d5d9; 
+    background: #fff; 
+    padding: 14px 25px; 
+    cursor: pointer;
+}

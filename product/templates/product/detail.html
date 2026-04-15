@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+{% load custom_filters %}
+{% block title %}
+Product Detail
+{% endblock %}
+{% block body %}
+<div class="pdp-container">
+    <div class="pdp-left">
+        <div class="image-wrapper">
+            <img id="mainImage" src="{{ product.image.url }}" alt="">
+        </div>
+        <div class="thumbs">
+            {% for img in product.images.all %}
+                <img src="{{ img.image.url }}" onclick="switchImage(this)">
+            {% endfor %}
+        </div>
+    </div>
+        <div class="pdp-right">
+        <h1 class="title">{{ product.name }}</h1>
+        <div class="brand">BRAND NAME</div>
+        <div class="rating-box">
+            <div class="stars">
+                ★★★★☆ <span class="rating-value">4.2</span>
+            </div>
+            <div class="review-count">1,240 Ratings & 180 Reviews</div>
+        </div>
+        <div class="price-block">
+            <span class="price">{{ product.price|currency }}</span>
+            <span class="mrp">{{ product.old_price|currency }}</span>
+            <span class="discount">40% OFF</span>
+        </div>
+        <div class="tax-info">inclusive of all taxes</div>
+        <div class="cta">
+            <button class="add-bag" id="Addtocart">ADD TO BAG</button>
+            <button class="wishlists">WISHLIST</button>
+        </div>
+        <div class="offers">
+            <h4>Available Offers</h4>
+            <ul>
+                <li>10% Instant Discount on HDFC Bank Cards</li>
+                <li>Free Delivery on this item</li>
+                <li>Cash on Delivery available</li>
+            </ul>
+        </div>
+        <div class="details">
+            <h3 class="section-title">PRODUCT DETAILS</h3>
+            <div class="detail-card">
+                {% if product.description %}
+                    <ul class="detail-list">
+                        {% for line in product.description.splitlines %}
+                            {% if line %}
+                                <li>{{ line }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="no-data">No product details available</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
