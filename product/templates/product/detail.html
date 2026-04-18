@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load static %}
 {% load custom_filters %}
 {% block title %}
 Product Detail
@@ -7,7 +8,11 @@ Product Detail
 <div class="pdp-container">
     <div class="pdp-left">
         <div class="image-wrapper">
+            {% if product.image and product.image.url %}
             <img id="mainImage" src="{{ product.image.url }}" alt="">
+            {% else %}
+            <img id="mainImage" src="{% static 'core/images/no-image.png' %}" alt="">
+            {% endif %}
         </div>
         <div class="thumbs">
             {% for img in product.images.all %}
@@ -17,7 +22,6 @@ Product Detail
     </div>
         <div class="pdp-right">
         <h1 class="title">{{ product.name }}</h1>
-        <div class="brand">BRAND NAME</div>
         <div class="rating-box">
             <div class="stars">
                 ★★★★☆ <span class="rating-value">4.2</span>
@@ -30,9 +34,16 @@ Product Detail
             <span class="discount">40% OFF</span>
         </div>
         <div class="tax-info">inclusive of all taxes</div>
+        <div class="quantity-box">
+            <label>Quantity</label>
+            <div class="qty-controls">
+                <button type="button" class="qty-btn minus">−</button>
+                <input type="text" id="quantity" value="1" readonly>
+                <button type="button" class="qty-btn plus">+</button>
+            </div>
+        </div>
         <div class="cta">
-            <button class="add-bag" id="Addtocart">ADD TO BAG</button>
-            <button class="wishlists">WISHLIST</button>
+            <button class="add-bag" id="Addtocart" data-product_id="{{product.id}}">ADD TO BAG</button>
         </div>
         <div class="offers">
             <h4>Available Offers</h4>
@@ -60,4 +71,29 @@ Product Detail
         </div>
     </div>
 </div>
+<script>
+// Add to card functionality
+$(document).on('click','#Addtocart',function(){
+    $.ajax({
+        type:"POST",
+        url:"{% url 'add_cart' %}",
+        data:{
+            csrfmiddlewaretoken:"{{ csrf_token }}",
+            product_id:$(this).data('product_id'),
+            quantity:$('#quantity').val(),
+        },
+        success:(function(response){
+            if(response.success){
+                showToast('Product added to cart','success')
+                $('.cart-count')
+                .fadeOut(100)
+                .fadeIn(200)
+                .text(response.cart_count);
+            }else{
+                showToast('Something went wrong','error')
+            }
+        })
+    })
+});
+</script>
 {% endblock %}

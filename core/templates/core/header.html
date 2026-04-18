@@ -2,7 +2,7 @@
     <div class="header-container">
         <!-- LOGO -->
         <div class="logo">
-            <a href="/">MYSHOP</a>
+            <a href="{% url 'product' %}">MYSHOP</a>
         </div>
         <!-- CATEGORY NAV -->
         <nav class="nav-links">
@@ -20,7 +20,17 @@
         <div class="header-icons">
             <a href="#">👤 Profile</a>
             <a href="#">❤️ Wishlist</a>
-            <a href="#">🛒 Cart</a>
+            <a href="{% url 'cart-overview' %}">🛒 Cart
+                <span class="cart-count">
+                    {% with cart_count=cart|length %}
+                    {% if cart_count > 0 %}
+                    {{ cart_count }}
+                    {% else %}
+                    0
+                    {% endif %}
+                    {% endwith %}
+                </span>
+            </a>
         </div>
     </div>
 </header>
