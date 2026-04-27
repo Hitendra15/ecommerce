@@ -1,0 +1,165 @@
+<style>
+    .auth-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
+}
+.auth-box {
+    width: 400px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    text-align: center;
+}
+.auth-box h2 {
+    margin-bottom: 5px;
+}
+.auth-subtitle {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+.input-group label {
+    font-size: 13px;
+    font-weight: 500;
+}
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 5px;
+    outline: none;
+    transition: 0.3s;
+}
+.input-group input:focus {
+    border-color: #ff3f6c;
+}
+.auth-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ff3f6c;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.auth-btn:hover {
+    background: #e7335d;
+}
+.auth-footer {
+    margin-top: 15px;
+    font-size: 14px;
+}
+.auth-footer a {
+    color: #ff3f6c;
+    text-decoration: none;
+}
+.form-error {
+    background: #ffe6e6;
+    color: #d8000c;
+    border: 1px solid #ffb3b3;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+.form-error p {
+    margin: 0;
+}
+.alert-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+}
+.alert {
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 14px;
+    min-width: 250px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    animation: slideIn 0.4s ease;
+}
+/* Types */
+.alert.success { background: #28a745; }
+.alert.info { background: #17a2b8; }
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+.field-error{
+    color:red;
+}
+</style>
+<div class="auth-container">
+    <div class="auth-box">
+        {% if messages %}
+        <div class="alert-container">
+        {% for message in messages %}
+            <div {% if message.tags %} class="alert {{ message.tags }}" {% endif %}>
+                {{ message }}
+            </div>
+        {% endfor %}
+        </div>
+        {% endif %}
+        <h2>Welcome Back</h2>
+        <p class="auth-subtitle">Login to continue shopping</p>
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            <!-- NON FIELD ERRORS -->
+            {% if form.non_field_errors %}
+                <div class="form-error">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <!-- EMAIL -->
+            <div class="input-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    <span class="field-error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <!-- PASSWORD -->
+            <div class="input-group">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                {% for error in form.password.errors %}
+                    <span class="field-error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <button type="submit" class="auth-btn">Sign In</button>
+            <div class="auth-footer">
+                <div class="forgot-row">
+                    <a href="{% url 'password_reset' %}" class="forgot-link">Forgot Password</a>
+                </div>
+                <div class="signup-row">
+                    <span>Don’t have an account?</span>
+                    <a href="{% url 'register' %}">Sign Up</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    setTimeout(function(){
+        document.querySelectorAll('.alert').forEach(el => {
+            el.style.opacity = '0';
+            setTimeout(() => el.remove(), 500);
+        });
+    }, 3000);
+</script>

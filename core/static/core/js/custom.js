@@ -69,3 +69,10 @@ $(document).on('click', '.minus', function () {
         $('#timelineDrawer').removeClass('open');
         $('body').removeClass('drawer-open');
     }
+// remove toastr message
+    setTimeout(function(){
+        document.querySelectorAll('.alert').forEach(el => {
+            el.style.opacity = '0';
+            setTimeout(() => el.remove(), 500);
+        });
+    }, 3000);

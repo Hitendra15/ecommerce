@@ -6,11 +6,9 @@
         </div>
         <!-- CATEGORY NAV -->
         <nav class="nav-links">
-            <a href="#">Mobiles</a>
-            <a href="#">Laptops</a>
-            <a href="#">Accessories</a>
-            <a href="#">Keyboards</a>
-            <a href="#">Headphones</a>
+            <a href="#" style="pointer:none"></a>
+            <a href="#" style="pointer:none"></a>
+            <a href="#" style="pointer:none"></a>
         </nav>
         <!-- SEARCH -->
         <div class="search-box">
@@ -18,19 +16,26 @@
         </div>
         <!-- ACTION ICONS -->
         <div class="header-icons">
-            <a href="#">👤 Profile</a>
-            <a href="#">❤️ Wishlist</a>
-            <a href="{% url 'cart-overview' %}">🛒 Cart
+        {% if request.user.is_authenticated %}
+            <!-- Profile -->
+            <a href="{% url 'profile' %}" class="profile-link">
+                👤 {{ request.user.username }}
+            </a>
+            <!-- Logout -->
+            <a href="{% url 'logout' %}" class="logout-link">
+                🚪 Logout
+            </a>
+            <!-- Cart -->
+            <a href="{% url 'cart-overview' %}" class="cart-link">
+                🛒 Cart
                 <span class="cart-count">
-                    {% with cart_count=cart|length %}
-                    {% if cart_count > 0 %}
-                    {{ cart_count }}
-                    {% else %}
-                    0
-                    {% endif %}
-                    {% endwith %}
+                    {{ cart|length|default:"0" }}
                 </span>
             </a>
-        </div>
+        {% else %}
+        <a href="{% url 'register' %}">📝 Sign Up</a>
+        <a href="{% url 'login' %}">🔐 Sign In</a>
+    {% endif %}
+</div>
     </div>
 </header>
