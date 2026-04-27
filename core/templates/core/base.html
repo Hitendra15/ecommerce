@@ -12,11 +12,22 @@
     <script src="{% static 'core/js/jquery.js' %}"></script>
 </head>
 <body>
+{% if messages %}
+<div class="alert-container">
+{% for message in messages %}
+    <div {% if message.tags %} class="alert {{ message.tags }}" {% endif %}>
+        {{ message }}
+    </div>
+{% endfor %}
+</div>
+{% endif %}
 {% include 'core/header.html' %}
 <div class="container-fluid mt-4">
     <div class="row">
         <!-- Sidebar Filters -->
+        {% if not hide_sidebar %}
         {% include 'core/sidebar.html' %}
+        {% endif %}
         <!-- Product Section -->
         <div class="col-lg-9">
         <div id="toast" class="toast-success" style="display:none;">

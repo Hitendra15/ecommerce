@@ -3,7 +3,9 @@ from django.http import JsonResponse
 from product.models import Product
 from .cart import Cart
 from decimal import Decimal
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+@login_required
 def add_to_cart(request):
     cart = Cart(request)
     if request.method == "POST":
@@ -14,11 +16,13 @@ def add_to_cart(request):
         cart_count = cart.__len__()
     return JsonResponse({'success':True,'cart_count':cart_count})
 
+@login_required
 def cart_overview(request):
     cart = Cart(request)
     total_price = cart.get_total_price()
     return render(request,'cart/cart-overview.html',{'cart':cart,'grand_total':total_price})
 
+@login_required
 def cart_delete(request):
     cart = Cart(request)
     if request.POST.get('action') == 'POST':
@@ -28,6 +32,7 @@ def cart_delete(request):
         cart_count = cart.__len__()
         return JsonResponse({'success':True,'message':'Product deleted from cart','total_price':total_price,'cart_count':cart_count,'product':product_id})
     
+@login_required
 def cart_update(request):
     cart = Cart(request)
     if request.method == 'POST':
@@ -38,4 +43,4 @@ def cart_update(request):
         total_price = cart.get_total_price()
         item = cart.cart.get(str(product_id))
         item_total = Decimal(item['price']) * Decimal(item['quantity'])
-        return JsonResponse({'success':True,'message':'Product updated sucessfully','total_price':total_price,'count':cart_count,'item_total':float(item_total),'product_id':product_id})
+        return JsonResponse({'success':True,'message':'Product updated successfully','total_price':total_price,'count':cart_count,'item_total':float(item_total),'product_id':product_id})

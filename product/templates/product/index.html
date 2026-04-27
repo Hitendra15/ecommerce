@@ -4,6 +4,15 @@
 {% block title %}
 Product Listing {% endblock %} 
 {% block body %}
+    {% if messages %}
+        <div class="alert-container">
+        {% for message in messages %}
+            <div {% if message.tags %} class="alert {{ message.tags }}" {% endif %}>
+                {{ message }}
+            </div>
+        {% endfor %}
+        </div>
+        {% endif %}
     <!-- Top Filter Bar -->
     <div class="d-flex justify-content-between align-items-center mb-4 px-2">
         <h5 class="fw-bold mb-0">Men T-Shirts</h5>
