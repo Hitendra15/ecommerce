@@ -1,0 +1,90 @@
+{% extends 'core/base.html' %}
+{% block title %}
+Address
+{% endblock %}
+{% block body %}
+<div class="profile-wrapper">
+    <div class="profile-content">
+        <h2 class="page-title">Shipping Address</h2>
+        <p class="page-subtitle">Please enter your delivery details</p>
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            <div class="row">
+                <!-- Full Name -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.full_name.label_tag }}
+                        {{ form.full_name }}
+                        {% for error in form.full_name.errors %}
+                            <span class="field-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Phone -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.phone.label_tag }}
+                        {{ form.phone }}
+                        {% for error in form.phone.errors %}
+                            <span class="field-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Address Line 1 -->
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form.line1.label_tag }}
+                        {{ form.line1 }}
+                        {% for error in form.line1.errors %}
+                            <span class="field-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Address Line 2 -->
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form.line2.label_tag }}
+                        {{ form.line2 }}
+                        {% for error in form.line2.errors %}
+                            <span class="field-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- City -->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {{ form.city.label_tag }}
+                        {{ form.city }}
+                        {% for error in form.city.errors %}
+                            <span class="field-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- State -->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {{ form.state.label_tag }}
+                        {{ form.state }}
+                        {% for error in form.state.errors %}
+                            <span class="field-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Country -->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {{ form.country.label_tag }}
+                        {{ form.country }}
+                        {% for error in form.country.errors %}
+                            <span class="field-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn-save">
+                Save Address
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
