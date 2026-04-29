@@ -2,7 +2,7 @@
 {% load static %}
 {% load custom_filters %} 
 {% block title %}
-Product Listing {% endblock %} 
+Products {% endblock %} 
 {% block body %}
     {% if messages %}
         <div class="alert-container">
@@ -40,7 +40,7 @@ Product Listing {% endblock %}
                 </div>
                 <!-- Details -->
                 <div class="myntra-info">
-                    <h6 class="brand">Roadster</h6>
+                    <h6 class="brand"></h6>
                     <p class="title">{{ product.name }}</p>
                     <div class="price-section">
                         <span class="price">{{ product.price|currency}}</span>

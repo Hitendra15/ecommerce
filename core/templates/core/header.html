@@ -12,7 +12,9 @@
         </nav>
         <!-- SEARCH -->
         <div class="search-box">
-            <input type="text" placeholder="Search for mobiles, keyboards, laptops...">
+            <form method="GET" action="{% url 'product' %}">
+                <input type="text" name="q" placeholder="Search for mobiles, keyboards, laptops..." value="{{ request.GET.q }}">
+            </form>
         </div>
         <!-- ACTION ICONS -->
         <div class="header-icons">
