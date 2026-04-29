@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} E-commerce Website {% endblock %}</title>
+    <!-- Bootstrap 5 -->
+    <link href="{% static 'core/css/bootstrap.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/custom.css' %}">
+    <script src="{% static 'core/js/jquery.js' %}"></script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+{% if messages %}
+<div class="alert-container">
+{% for message in messages %}
+    <div {% if message.tags %} class="alert {{ message.tags }}" {% endif %}>
+        {{ message }}
+    </div>
+{% endfor %}
+</div>
+{% endif %}
+{% include 'core/header.html' %}
+<div class="container-fluid mt-4 flex-grow-1">
+    <div class="row">
+        <!-- Sidebar Filters -->
+        {% if not hide_sidebar %}
+        {% include 'core/sidebar.html' %}
+        {% endif %}
+        <!-- Product Section -->
+        <div class="col-lg-9">
+        <div id="toast" class="toast-success" style="display:none;">
+            <span id="toast-message"></span>
+            <span class="toast-close">&times;</span>
+        </div>
+        {% block body %}
+        {% endblock %}
+        </div>
+    </div>
+</div>
+{% include 'core/footer.html' %}
+<script src="{% static 'core/js/custom.js' %}"></script>
+</body>
+</html>

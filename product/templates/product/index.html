@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %} 
+{% load static %}
+{% load custom_filters %} 
+{% block title %}
+Products {% endblock %} 
+{% block body %}
+    {% if messages %}
+        <div class="alert-container">
+        {% for message in messages %}
+            <div {% if message.tags %} class="alert {{ message.tags }}" {% endif %}>
+                {{ message }}
+            </div>
+        {% endfor %}
+        </div>
+        {% endif %}
+    <!-- Product Grid -->
+    <div class="row g-4">
+        <!-- PRODUCT CARD -->
+        {% if products %}
+        {% for product in products %}
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="myntra-card">
+                <!-- Image -->
+                <div class="myntra-img">
+                    {% if product.image and product.image.url %}
+                        <img data-src="{{ product.image.url }}" 
+                            src="{% static 'core/images/no-image.png' %}"
+                            class="img-fluid product-img lazy">
+                    {% else %}
+                        <img src="{% static 'core/images/no-image.png' %}" class="img-fluid product-img">
+                    {% endif %}
+                    <!-- Wishlist -->
+                    <div class="wishlist">♡</div>
+                    <!-- Hover Button -->
+                    <div class="quick-view">
+                        <a href="{{ product.get_absolute_url }}" class="quick-btn">
+                            VIEW PRODUCT
+                        </a>
+                    </div>
+                </div>
+                <!-- Details -->
+                <div class="myntra-info">
+                    <h6 class="brand"></h6>
+                    <p class="title">{{ product.name }}</p>
+                    <div class="price-section">
+                        <span class="price">{{ product.price|currency}}</span>
+                        <span class="old-price">₹999</span>
+                        <span class="discount">(50% OFF)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

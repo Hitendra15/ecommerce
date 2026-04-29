@@ -1,0 +1,78 @@
+{% extends 'core/base.html' %}
+{% block title %}Checkout{% endblock %}
+{% block body %}
+<div class="checkout-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-12">
+            <div class="checkout-box">
+                <h3>Shipping Address</h3>
+                {% if address %}
+                <div class="address-card">
+                    <p><strong>{{ address.full_name }}</strong></p>
+                    <p>{{ address.line1 }}</p>
+                    <p>{{ address.line2 }}</p>
+                    <p>{{ address.city }}, {{ address.state }}</p>
+                    <p>{{ address.country }}</p>
+                    <p>📞 {{ address.phone }}</p>
+                    <a href="{% url 'orders' %}" class="edit-address-btn">
+                        Edit Address
+                    </a>
+                </div>
+                {% else %}
+                <div class="no-address">
+                    <p>No address found.</p>
+                    <a href="{% url 'orders' %}" class="btn-save">
+                        Add Address
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-12">
+            <div class="checkout-box summary-box">
+                <h3>Order Summary</h3>
+                {% for item in cart %}
+                <div class="summary-item">
+                    <span>{{ item.product.name }} (x{{ item.quantity }})</span>
+                    <span>₹ {{ item.total }}</span>
+                </div>
+                {% endfor %}
+                <hr>
+                <div class="summary-item total">
+                    <strong>Total</strong>
+                    <strong>₹ {{ cart.get_total_price }}</strong>
+                </div>
+                {% if address %}
+                    <button type="submit" class="place-order-btn place-order">
+                        Complete Order
+                    </button>
+                {% else %}
+                    <button type="button" class="place-order-btn disabled" disabled>
+                        Add Address to Continue
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).on('click','.place-order',function(e){
+        e.preventDefault()
+        $.ajax({
+            type:"POST",
+            url:"{% url 'place_order' %}",
+            data:{
+                csrfmiddlewaretoken:"{{ csrf_token }}",
+                type:"POST",
+            },
+            success:function(res){
+                if(res.success){
+                    window.location.href="{% url 'product' %}"
+                }else{
+                    showToast('Something went wrong','error')
+                }
+            }
+        })
+    })
+</script>
+{% endblock %}

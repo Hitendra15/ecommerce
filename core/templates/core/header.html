@@ -1,0 +1,43 @@
+<header class="shop-header">
+    <div class="header-container">
+        <!-- LOGO -->
+        <div class="logo">
+            <a href="{% url 'product' %}">MYSHOP</a>
+        </div>
+        <!-- CATEGORY NAV -->
+        <nav class="nav-links">
+            <a href="#" style="pointer:none"></a>
+            <a href="#" style="pointer:none"></a>
+            <a href="#" style="pointer:none"></a>
+        </nav>
+        <!-- SEARCH -->
+        <div class="search-box">
+            <form method="GET" action="{% url 'product' %}">
+                <input type="text" name="q" placeholder="Search for mobiles, keyboards, laptops..." value="{{ request.GET.q }}">
+            </form>
+        </div>
+        <!-- ACTION ICONS -->
+        <div class="header-icons">
+        {% if request.user.is_authenticated %}
+            <!-- Profile -->
+            <a href="{% url 'profile' %}" class="profile-link">
+                👤 {{ request.user.username }}
+            </a>
+            <!-- Logout -->
+            <a href="{% url 'logout' %}" class="logout-link">
+                🚪 Logout
+            </a>
+            <!-- Cart -->
+            <a href="{% url 'cart-overview' %}" class="cart-link">
+                🛒 Cart
+                <span class="cart-count">
+                    {{ cart|length|default:"0" }}
+                </span>
+            </a>
+        {% else %}
+        <a href="{% url 'register' %}">📝 Sign Up</a>
+        <a href="{% url 'login' %}">🔐 Sign In</a>
+    {% endif %}
+</div>
+    </div>
+</header>
