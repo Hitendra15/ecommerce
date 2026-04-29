@@ -222,21 +222,16 @@ body {
     color: #000;
 }
 /* FOOTER */
-.myntra-footer {
-    background: #fafbfc;
-    padding: 40px 0;
-    margin-top: 50px;
+.simple-footer {
+    background: #111;
+    padding: 15px 0;
+    text-align: center;
 }
 
-.myntra-footer h6 {
+.footer-copy {
+    color: #aaa;
     font-size: 13px;
-    font-weight: 700;
-}
-
-.myntra-footer p {
-    font-size: 13px;
-    color: #696b79;
-    margin: 5px 0;
+    margin: 0;
 }
 
 .product-img {
@@ -880,4 +875,58 @@ body {
 .forgot-link:hover,
 .signup-row a:hover {
     text-decoration: underline;
+}
+
+.checkout-wrapper {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.checkout-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.summary-box {
+    position: sticky;
+    top: 20px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.place-order-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    background: #ff3f6c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.place-order-btn.disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.address-card {
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+.edit-address-btn {
+    display: inline-block;
+    margin-top: 10px;
+    color: #ff3f6c;
 }
