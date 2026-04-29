@@ -225,3 +225,18 @@ Pull requests are welcome.
 
 **Hitendra**
 GitHub: https://github.com/Hitendra15
+
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Home](screenshots/product.png)
+
+### 📦 Product Page
+![Product Detail](screenshots/product-detail.png)
+
+### 🛒 Cart Page
+![Cart](screenshots/cart.png)
+
+### 💳 Checkout Page
+![Checkout](screenshots/checkout.png)
